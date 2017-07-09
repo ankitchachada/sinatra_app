@@ -1,5 +1,8 @@
 require 'sinatra'
 require 'sinatra/cookies'
+
+enable :sessions
+set :session_secret, 'sadsak45481sadsd48485sads548'
 # Default file paths
 # set :root, File.dirname(__FILE__)
 # set :public_folder, settings.root + "public"
@@ -67,3 +70,16 @@ get '/get_cookie' do
   output << "Current time: #{Time.now}"
   output
 end
+
+
+get '/set_session' do
+  session[:time] = Time.now.to_s
+  "Session was set"
+end
+
+get '/get_session' do
+  output = "Stored time: #{session[:time]}<br/>"
+  output << "Current time: #{Time.now}"
+  output
+end
+
