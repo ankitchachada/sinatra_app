@@ -9,6 +9,14 @@ set :session_secret, 'sadsak45481sadsd48485sads548'
 # set :views, settings.root + "views"
 require_relative('helpers.rb')
 
+Dir[settings.root + "/classes/*.rb"].each {|file| require file}
+
+
+before do
+  @user = User.new
+  @user.username = 'guest'
+end
+
 get '/' do
   @page_title = "Welcome to Explore California!"
   @body_id = 'home'
@@ -83,3 +91,6 @@ get '/get_session' do
   output
 end
 
+get '/username' do
+  "Username: #{@user.username}"
+end
