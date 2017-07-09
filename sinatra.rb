@@ -1,5 +1,5 @@
 require 'sinatra'
-
+require 'sinatra/cookies'
 # Default file paths
 # set :root, File.dirname(__FILE__)
 # set :public_folder, settings.root + "public"
@@ -55,4 +55,15 @@ end
 get '/tours/tour_detail_bigsur' do
   @page_title = "Explore California: Tour - Big Sur Retreat"
   render_view 'tours/tour_detail_bigsur'
+end
+
+get '/set_cookie' do
+  cookies[:time] = Time.now.to_s
+  "Cookie was set"
+end
+
+get '/get_cookie' do
+  output = "Stored time: #{cookies[:time]}<br/>"
+  output << "Current time: #{Time.now}"
+  output
 end
