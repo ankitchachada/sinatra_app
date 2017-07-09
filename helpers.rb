@@ -10,4 +10,8 @@ helpers do
   	new_path = [parts,"_#{filename}"].join('/')
   	erb(new_path.to_sym, options.merge(:layout => false))
   end
+
+  def h(text)
+  	Rack::Utils.escape_html(text)
+  end
 end
